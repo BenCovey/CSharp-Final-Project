@@ -5,9 +5,37 @@
     xmlns:local="using:Youtube_Player_Final"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Width="1280" Height="720" Loaded="Page_Loaded">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate x:Key="VideoTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Title, Mode=OneWay}" Width="40"/>
+                <TextBlock Text="{Binding Link, Mode=OneWay}" Width="40"/>
+                <ItemsControl ItemsSource="{Binding Titles, Mode=OneWay}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <TextBlock x:Name="Title" Text="" />
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <StackPanel Margin="0,0,0,-190">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="1280" Height="720">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="listVideos" ItemTemplate="{StaticResource VideoTemplate}" ItemsSource="{Binding videos}" HorizontalAlignment="Left" Height="663" Margin="10,47,0,0" VerticalAlignment="Top" Width="310" Background="#FFD1C2C2" SelectionChanged="listVideos_SelectionChanged"/>
 
-    </Grid>
+            <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="20" Width="210" Background="#66F0E3E3"/>
+            <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="90" Click="btnSearch_Click"/>
+            <MediaTransportControls Grid.Column="1" Margin="360,660,360,0" Height="60" VerticalAlignment="Bottom"/>
+            <WebView x:Name="player" Height="630" Width="900" Margin="350,10,-610,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock x:Name="Description" HorizontalAlignment="Left" Margin="350,645,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="65" Width="900"/>
+        </Grid>
+    </StackPanel>
 </Page>
