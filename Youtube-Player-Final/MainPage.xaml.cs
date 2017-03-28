@@ -38,6 +38,7 @@ namespace Youtube_Player_Final
         private ObservableCollection<Videos> videos = new ObservableCollection<Videos>();   
         public static MainPage _main;
         private bool search;
+        private in maxResults = 25;
         private ListViewItem itm;
 
         public MainPage()
@@ -95,7 +96,12 @@ namespace Youtube_Player_Final
             });
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = query; // Replace with your search term.
-            searchListRequest.MaxResults = 25;
+            //
+            //
+            // THIS IS THE SETTING FOR MAX RESULTS
+            //
+            //
+            searchListRequest.MaxResults = maxResults;
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();
             // Add each result to the appropriate list, and then display the lists of
