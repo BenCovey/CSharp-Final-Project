@@ -38,7 +38,7 @@ namespace Youtube_Player_Final
         private ObservableCollection<Videos> videos = new ObservableCollection<Videos>();   
         public static MainPage _main;
         private bool search;
-        private in maxResults = 25;
+        private int maxResults = 25;
         private ListViewItem itm;
 
         public MainPage()
@@ -46,8 +46,6 @@ namespace Youtube_Player_Final
             this.InitializeComponent();
             _main = this;
             
-            
-
         }
 
         private async void  btnSearch_Click(object sender, RoutedEventArgs e)
@@ -135,6 +133,11 @@ namespace Youtube_Player_Final
             {
                 
             }
+        }
+
+        private void AboutClicked(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(About));
         }
     }
 
