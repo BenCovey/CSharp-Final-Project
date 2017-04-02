@@ -29,7 +29,8 @@
             x:Name="descriptionBlock"
             Grid.Row="1"
             Margin="20"
-            FontSize="16"
+            FontSize="25"
+            TextWrapping="WrapWholeWords"
             Foreground="White" 
             Opacity="0.6" FontFamily="Segoe UI Semilight"/>
     </Grid>

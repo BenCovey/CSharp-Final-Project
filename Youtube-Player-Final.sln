@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Youtube-Player-Final", "Youtube-Player-Final\Youtube-Player-Final.csproj", "{C2CBE923-F08D-45F1-9309-26CF46C7F8AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeTest", "YouTubeTest\YouTubeTest.csproj", "{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,26 @@ Global
 		{C2CBE923-F08D-45F1-9309-26CF46C7F8AF}.Release|x86.ActiveCfg = Release|x86
 		{C2CBE923-F08D-45F1-9309-26CF46C7F8AF}.Release|x86.Build.0 = Release|x86
 		{C2CBE923-F08D-45F1-9309-26CF46C7F8AF}.Release|x86.Deploy.0 = Release|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|ARM.Build.0 = Debug|ARM
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|ARM.Deploy.0 = Debug|ARM
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|x64.ActiveCfg = Debug|x64
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|x64.Build.0 = Debug|x64
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|x64.Deploy.0 = Debug|x64
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|x86.ActiveCfg = Debug|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|x86.Build.0 = Debug|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Debug|x86.Deploy.0 = Debug|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|Any CPU.ActiveCfg = Release|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|ARM.ActiveCfg = Release|ARM
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|ARM.Build.0 = Release|ARM
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|ARM.Deploy.0 = Release|ARM
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|x64.ActiveCfg = Release|x64
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|x64.Build.0 = Release|x64
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|x64.Deploy.0 = Release|x64
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|x86.ActiveCfg = Release|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|x86.Build.0 = Release|x86
+		{1A3B02F3-C20C-429D-94B8-261CD49C9AF0}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
