@@ -1,29 +1,13 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
-using Google.Apis.Upload;
-using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -94,26 +78,15 @@ namespace Youtube_Player_Final
             });
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = query; // Replace with your search term.
-            //
-            //
-            // THIS IS THE SETTING FOR MAX RESULTS
-            //
-            //
             searchListRequest.MaxResults = maxResults;
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();
-            // Add each result to the appropriate list, and then display the lists of
-            // matching videos, channels, and playlists.
             foreach (var searchResult in searchListResponse.Items)
             {
                 switch (searchResult.Id.Kind)
                 {
                     case "youtube#video":
                         vidlist.Add(new Videos(searchResult.Id.VideoId, searchResult.Id.ChannelId, searchResult.Snippet.Title, searchResult.Snippet.Description, "https://youtube.com/embed/" + searchResult.Id.VideoId, searchResult.Snippet.Thumbnails.Default__));
-                        //Thumbnail img = searchResult.Snippet.Thumbnails.Default__;
-                        Debug.WriteLine(searchResult.Snippet.Title);
-                        //listVideos.Text = "\n" + searchResult.Snippet.Title + "\nhttp://youtube.com/watch?v=" + searchResult.Id.VideoId;
-                        //listVideos.Items.Add(new ListViewItem { Content = searchResult.Snippet.Title });
                         break;
                 }
             }
