@@ -5,38 +5,66 @@
     xmlns:local="using:Youtube_Player_Final"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="1280" Height="720" Loaded="Page_Loaded">
-
-
-    <Page.Resources>
-        <DataTemplate x:Key="VideoTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Title, Mode=OneWay}" Width="40"/>
-                <TextBlock Text="{Binding Link, Mode=OneWay}" Width="40"/>
-                <Image Source="{Binding Thumbnail, Mode=OneWay}" Width="40"/>
-            </StackPanel>
-        </DataTemplate>
-    </Page.Resources>
-    <Page.BottomAppBar>
-        <CommandBar>
-            <CommandBar.Content>
-                <TextBlock x:Name="Title" Text="" />
-            </CommandBar.Content>
+    mc:Ignorable="d">
+    <Page.TopAppBar>
+        <CommandBar Background="DarkGray">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
+                    Icon="Like"
+					x:Name="About"
+					Label="About" Click="AboutClick"/>
+                <AppBarButton
+					x:Name="Exit"
+					Label="Exit" Click="ExitClick"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
-    <StackPanel Margin="0,0,0,-190">
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="720" Margin="0,0,-66,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <ListView x:Name="listVideos" ItemTemplate="{StaticResource VideoTemplate}" ItemsSource="{Binding videos}" HorizontalAlignment="Left" Height="663" Margin="10,47,0,0" VerticalAlignment="Top" Width="310" Background="#FFD1C2C2" SelectionChanged="listVideos_SelectionChanged"/>
-            <Button Content="About" Grid.Column="1" Margin="599,9,0,679" Click="AboutClicked"/>
-            <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" PlaceholderText="Video Search.." VerticalAlignment="Top" Height="20" Width="210" Background="#66F0E3E3"/>
-            <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="90" Click="btnSearch_Click"/>
-            <MediaTransportControls Grid.Column="1" Margin="360,660,360,0" Height="60" VerticalAlignment="Bottom"/>
-            <WebView x:Name="player" Height="630" Width="900" Margin="350,10,-610,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-            <TextBlock x:Name="Description" HorizontalAlignment="Left" Margin="350,645,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="65" Width="900"/>
-        </Grid>
-    </StackPanel>
+    </Page.TopAppBar>
+    <Grid Background="#363636">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+				Height="0.1*"/>
+            <RowDefinition
+				Height="0.9*"/>
+        </Grid.RowDefinitions>
+
+        <AutoSuggestBox x:Name="suggestBox"
+                        Margin="20"
+                        QueryIcon="Find"
+                        Grid.Row="0" Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        TextChanged="SearchTextChanged"
+                        QuerySubmitted="SearchboxSearch" FontFamily="Segoe UI Light" FontSize="20"/>
+        <ListView 
+            x:Name="VideosList" 
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            SelectionChanged="VideoSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <Image>
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Thumbnail.Url}" />
+                            </Image.Source>
+                        </Image>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Title}" 
+                                       Margin="20,0,20,8"
+                                       FontSize="30" 
+                                       Foreground="#ed3939" FontFamily="Microsoft JhengHei UI Light" />     
+                            <TextBlock Text="{Binding ChannelTitle}" 
+                                       Margin="20,0,20,8"
+                                       FontSize="16"
+                                       Foreground="White" 
+                                       Opacity="0.6" FontFamily="Segoe UI Semilight" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>
