@@ -1,14 +1,11 @@
-﻿using Google.Apis.Services;
-using Google.Apis.YouTube.v3;
-using Google.Apis.YouTube.v3.Data;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
+using System.Threading;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -19,6 +16,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Google.Apis.Services;
+using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -76,12 +76,18 @@ namespace Youtube_Player_Final {
         private async Task<string[]> GetSuggestions(string query) {
             List<string> suggestions = new List<string>();
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = query;
-            searchListRequest.MaxResults = Constants.RESULTS_NUM;
+
+            searchListRequest.Q = query; // Replace with your search term.
+            searchListRequest.MaxResults = maxResults;
+            // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();
-            foreach (var searchResult in searchListResponse.Items) {
-                if (searchResult.Id.Kind == "youtube#video") {
-                    suggestions.Add(searchResult.Snippet.Title);
+            foreach (var searchResult in searchListResponse.Items)
+            {
+                switch (searchResult.Id.Kind)
+                {
+                    case "youtube#video":
+                        vidlist.Add(new Videos(searchResult.Id.VideoId, searchResult.Id.ChannelId, searchResult.Snippet.Title, searchResult.Snippet.Description, "https://youtube.com/embed/" + searchResult.Id.VideoId, searchResult.Snippet.Thumbnails.Default__));
+                        break;
                 }
             }
             return suggestions.ToArray();
